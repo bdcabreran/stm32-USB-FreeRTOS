@@ -1,0 +1,18 @@
+{
+    "nrf-connect.topdir": "${nrf-connect.sdk:1.5.0}",
+    "nrf-connect.toolchain.path": "${nrf-connect.toolchain:1.5.0}",
+    "files.associations": {
+        "time_event.h": "c",
+        "ib_lan_v2_test_proc.h": "c",
+        "host_comm_tx_fsm.h": "c",
+        "ib_lan_v3_test_proc.h": "c",
+        "specific_test_fsm.h": "c",
+        "ib_lan_v1_test_proc.h": "c",
+        "cmsis_os.h": "c",
+        "usart.h": "c",
+        "cstdarg": "c",
+        "log.h": "c",
+        "main.h": "c",
+        "usbd_cdc.h": "c"
+    }
+}
