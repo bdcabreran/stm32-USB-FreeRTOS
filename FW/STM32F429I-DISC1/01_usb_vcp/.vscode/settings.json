@@ -13,6 +13,7 @@
         "cstdarg": "c",
         "log.h": "c",
         "main.h": "c",
-        "usbd_cdc.h": "c"
+        "usbd_cdc.h": "c",
+        "virtualcommdriver.h": "c"
     }
 }

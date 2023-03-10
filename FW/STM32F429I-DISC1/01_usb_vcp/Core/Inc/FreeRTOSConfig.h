@@ -142,6 +142,9 @@ standard names. */
 
 /* USER CODE BEGIN Defines */
 /* Section where parameter definitions can be added (for instance, to override default ones in FreeRTOS.h) */
-/* USER CODE END Defines */
+#include "SEGGER_SYSVIEW_FreeRTOS.h"
+#define INCLUDE_pxTaskGetStackStart			1
+#define INCLUDE_xTaskGetIdleTaskHandle		1
+  /* USER CODE END Defines */
 
 #endif /* FREERTOS_CONFIG_H */

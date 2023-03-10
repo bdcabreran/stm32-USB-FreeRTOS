@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "VirtualCommDriver.h"
+#include "SEGGER_SYSVIEW.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,6 +38,7 @@
 #define STACK_SIZE 128
 
 void usbPrintOutTask( void* NotUsed);
+TaskHandle_t usb_print = NULL;
 
 /* USER CODE END PTD */
 
@@ -98,12 +100,13 @@ int main(void)
   MX_CRC_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);	//ensure proper priority grouping for freeRTOS
   VirtualCommInit();
   SEGGER_SYSVIEW_Conf();
-  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);	//ensure proper priority grouping for freeRTOS
+
 
   //setup tasks, making sure they have been properly created before moving on
-  assert_param(xTaskCreate(usbPrintOutTask, "usbprint", STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL) == pdPASS);
+  assert_param(xTaskCreate(usbPrintOutTask, "usbprint", STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, &usb_print) == pdPASS);
 
   //start the scheduler - shouldn't return unless there's a problem
   vTaskStartScheduler();
@@ -132,7 +135,7 @@ void usbPrintOutTask( void* NotUsed)
 		TransmitUsbDataLossy(testString, sizeof(testString));
 		SEGGER_SYSVIEW_PrintfHost("add \"message\" to txStream");
 		TransmitUsbDataLossy(messageString, sizeof(messageString));
-		vTaskDelay(2);
+		vTaskDelay(20);
 	}
 }
 

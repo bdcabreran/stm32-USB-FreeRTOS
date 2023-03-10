@@ -76,8 +76,7 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-  USBD_Interface_fops_HS.TransmitCplt = &user_usb_tx_cplt;
-  if (USBD_CDC_RegisterInterface(&hUsbDeviceHS, &USBD_Interface_fops_HS) != USBD_OK)
+  if (USBD_CDC_RegisterInterface(&hUsbDeviceHS, &USBD_Interface_fops) != USBD_OK)
   {
     Error_Handler();
   }
