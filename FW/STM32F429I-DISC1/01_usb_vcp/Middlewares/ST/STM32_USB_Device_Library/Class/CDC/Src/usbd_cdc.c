@@ -289,11 +289,7 @@ static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
   UNUSED(cfgidx);
   USBD_CDC_HandleTypeDef *hcdc;
-  // !avoid using malloc, not thread safe when using FreeRTOS
-  // hcdc = (USBD_CDC_HandleTypeDef *)USBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
-
-  static USBD_CDC_HandleTypeDef cdcStorage;
-  hcdc = &cdcStorage;	//statically allocate space for usb cdc to avoid malloc
+  hcdc = (USBD_CDC_HandleTypeDef *)USBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
 
 
   if (hcdc == NULL)
